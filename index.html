@@ -11,6 +11,19 @@
     <div id="status">Подключение...</div>
     <div id="prices"></div>
 
-    <script></script>
+    <script>
+        const ws = new WebSocket("ws://localhost:8080");
+
+        ws.onopen = () => {
+            document.getElementById('status').textContent = "Подключено!";
+        };
+        ws.onmessage = (event) => {
+            const message = JSON.parse(event.data);
+            const data = message.data;
+            const symbol = data.s.toLowerCase();
+            const price = parceFloat(data.c).toFixed(2);
+        }
+
+    </script>
 </body>
 </html>
