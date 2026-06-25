@@ -35,7 +35,7 @@ console.log("WebSocket сервер запущен на порту 8080");
 wss.on("connection", () => {
     console.log("новый клиент подключился");
 
-    ws.on("close", () => {
+    wss.on("close", () => {
         console.log("клиент отключился");
     });
 });

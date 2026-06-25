@@ -21,7 +21,7 @@
             const message = JSON.parse(event.data);
             const data = message.data;
             const symbol = data.s.toLowerCase();
-            const price = parceFloat(data.c).toFixed(2);
+            const price = parseFloat(data.c).toFixed(2);
 
             let el = document.getElementById(symbol)
 
