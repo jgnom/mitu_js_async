@@ -29,8 +29,9 @@
                 el = document.createElement('div')
                 el.id = symbol
                 el.className = 'price-item'
+                document.getElementById('prices').appendChild(el)
             }
-            document.getElementById('prices').appendChild(el)
+            
 
             el.innerHTML = `<span class='symbol'>${symbol.toUpperCase()} <span class='price'>$${price}</span>`;
         };
