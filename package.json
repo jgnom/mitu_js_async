@@ -1,0 +1,24 @@
+{
+  "name": "js-basics",
+  "version": "1.0.0",
+  "description": "mitu_js",
+  "homepage": "https://github.com/jgnom/mitu_js_async#readme",
+  "bugs": {
+    "url": "https://github.com/jgnom/mitu_js_async/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jgnom/mitu_js_async.git"
+  },
+  "license": "ISC",
+  "author": "korelin_ks",
+  "type": "module",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "ws": "^8.21.0"
+  },
+  "devDependencies": {}
+}
