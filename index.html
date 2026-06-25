@@ -22,8 +22,24 @@
             const data = message.data;
             const symbol = data.s.toLowerCase();
             const price = parceFloat(data.c).toFixed(2);
+
+            let el = document.getElementById(symbol)
+
+            if(!el) {
+                el = document.createElement('div')
+                el.id = symbol
+                el.className = 'price-item'
+            }
+            document.getElementById('prices').appendChild(el)
+
+            el.innerHTML = `<span class='symbol'>${symbol.toUpperCase()} <span class='price'>$${price}</span>`;
+        };
+
+        ws.onclose = () => {
+            console.log("Соединение закрыто")
         }
 
+        
     </script>
 </body>
 </html>
