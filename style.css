@@ -1,0 +1,236 @@
+/* Сброс и базовые стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #0b0e11 0%, #1e2329 100%);
+    color: #eaecef;
+    min-height: 100vh;
+    padding: 40px 20px;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Декоративный фоновый эффект */
+body::before {
+    content: '';
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 20% 50%, rgba(240, 185, 11, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(14, 203, 129, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, #f0b90b 0%, #fcd535 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+    z-index: 1;
+}
+
+/* Статус подключения */
+#status {
+    text-align: center;
+    padding: 12px 24px;
+    margin: 0 auto 40px;
+    max-width: 300px;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    z-index: 1;
+    transition: all 0.3s ease;
+}
+
+#status::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 8px;
+    background: #848e9c;
+    animation: pulse 2s infinite;
+}
+
+#status.connected {
+    background: rgba(14, 203, 129, 0.1);
+    border-color: rgba(14, 203, 129, 0.3);
+    color: #0ecb81;
+}
+
+#status.connected::before {
+    background: #0ecb81;
+    box-shadow: 0 0 10px #0ecb81;
+}
+
+#status.disconnected {
+    background: rgba(246, 70, 93, 0.1);
+    border-color: rgba(246, 70, 93, 0.3);
+    color: #f6465d;
+}
+
+#status.disconnected::before {
+    background: #f6465d;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* Сетка цен */
+#prices {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+/* Карточка цены */
+.price-item {
+    background: rgba(30, 35, 41, 0.6);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.price-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #f0b90b, transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.price-item:hover {
+    transform: translateY(-4px);
+    border-color: rgba(240, 185, 11, 0.3);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4),
+                0 0 20px rgba(240, 185, 11, 0.1);
+}
+
+.price-item:hover::before {
+    opacity: 1;
+}
+
+/* Символ пары */
+.symbol {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #eaecef;
+    letter-spacing: 0.5px;
+}
+
+/* Цена */
+.price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    color: #eaecef;
+    transition: all 0.3s ease;
+}
+
+/* Анимация изменения цены */
+.price-up {
+    color: #0ecb81 !important;
+    animation: flashGreen 0.6s ease;
+}
+
+.price-down {
+    color: #f6465d !important;
+    animation: flashRed 0.6s ease;
+}
+
+@keyframes flashGreen {
+    0% { background-color: rgba(14, 203, 129, 0.3); }
+    100% { background-color: transparent; }
+}
+
+@keyframes flashRed {
+    0% { background-color: rgba(246, 70, 93, 0.3); }
+    100% { background-color: transparent; }
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+    
+    #prices {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    
+    .price-item {
+        padding: 20px;
+    }
+    
+    .price {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 20px 16px;
+    }
+    
+    h1 {
+        font-size: 1.75rem;
+    }
+    
+    .price-item {
+        padding: 16px;
+    }
+}
+
+/* Скроллбар */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #1e2329;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #474d57;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #5e6673;
+}
